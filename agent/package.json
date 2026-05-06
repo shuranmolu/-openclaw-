@@ -1,0 +1,18 @@
+{
+  "name": "miaoda-openclaw",
+  "version": "2.7.1",
+  "private": true,
+  "engine": {
+    "openclaw": "2026.4.11"
+  },
+  "scripts": {
+    "start": "sh scripts/start.sh",
+    "restart": "sh scripts/restart.sh",
+    "stop": "sh scripts/stop.sh",
+    "onboard": "openclaw onboard --non-interactive --accept-risk",
+    "lint": "echo 0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

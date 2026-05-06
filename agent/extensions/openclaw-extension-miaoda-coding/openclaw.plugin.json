@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-extension-miaoda-coding",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "verbose": {
+        "type": "boolean",
+        "description": "开启后恢复中间通知，默认关闭，仅保留最终主链路回复"
+      },
+      "hooks": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "allowPromptInjection": {
+            "type": "boolean",
+            "description": "是否启用 before_prompt_build 的妙搭硬规则注入"
+          }
+        }
+      }
+    }
+  }
+}

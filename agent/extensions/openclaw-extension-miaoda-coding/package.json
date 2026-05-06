@@ -1,0 +1,37 @@
+{
+  "name": "@lark-apaas/openclaw-extension-miaoda-coding",
+  "version": "1.0.14",
+  "description": "妙搭 Coding Agent — 通过 AI 创建和修改妙搭应用",
+  "type": "module",
+  "scripts": {
+    "prepack": "MIAODA_SLARDAR_ENV=${MIAODA_SLARDAR_ENV:-dev} tsdown",
+    "build": "MIAODA_SLARDAR_ENV=online tsdown",
+    "build:dev": "MIAODA_SLARDAR_ENV=dev MINIFY=false tsdown",
+    "test": "vitest run",
+    "test:cov": "vitest --coverage",
+    "ci": "npm run test",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist/",
+    "skills/",
+    "openclaw.plugin.json"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.mjs"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "devDependencies": {
+    "@lark-apaas/http-client": "^0.1.3",
+    "@slardar/base": "^2.1.8",
+    "@vitest/coverage-v8": "^4.0.18",
+    "openclaw": "^2026.3.2",
+    "tinyglobby": "^0.2.16",
+    "tsdown": "^0.21.0",
+    "vitest": "^4.0.18"
+  }
+}

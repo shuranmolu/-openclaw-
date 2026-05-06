@@ -1,0 +1,80 @@
+{
+  "id": "openclaw-extension-miaoda",
+  "contracts": {
+    "webSearchProviders": ["miaoda"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "greeting": {
+        "type": "object",
+        "description": "Feishu greeting configuration",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Opening message text to send"
+          },
+          "channel": {
+            "type": "string",
+            "default": "feishu",
+            "description": "Channel to send through (default: feishu)"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "Feishu account ID (optional, uses default)"
+          },
+          "targets": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Feishu user open_ids to send the greeting to (e.g. [\"ou_xxx\"])"
+          },
+          "accounts": {
+            "type": "object",
+            "description": "[Deprecated] Per-account greeting config (key = accountId). Schema kept for backward compatibility; runtime no longer processes this field — use messageList instead.",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "targets": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Feishu user open_ids for this account"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Override greeting message for this account"
+                }
+              },
+              "required": ["targets"],
+              "additionalProperties": false
+            }
+          },
+          "messageList": {
+            "type": "array",
+            "description": "Flat list of (accountId, target) entries with optional per-entry message override.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "description": "Feishu account ID used to send this entry"
+                },
+                "target": {
+                  "type": "string",
+                  "description": "Feishu target (open_id / chat_id)"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Override greeting message for this entry"
+                }
+              },
+              "required": ["accountId", "target"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

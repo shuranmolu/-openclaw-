@@ -1,0 +1,156 @@
+# OpenClaw Mem0 Plugin
+
+[中文文档](README_zh.md)
+
+This is a OpenClaw plugin that integrates with [Mem0](https://github.com/mem0ai/mem0) to provide intelligent long-term memory capabilities for your agents.
+
+## Features
+
+- **Auto-Recall**: Automatically searches for relevant past interactions and injects them into the context before the agent starts (`before_agent_start`).
+- **Auto-Capture**: Automatically analyzes conversation turns and stores key information into long-term memory after the agent finishes (`agent_end`).
+- **Hybrid Scope**: Supports both **Session Memory** (short-term, current conversation) and **User Memory** (long-term, cross-conversation).
+- **Dual Mode**: Supports both **Mem0 Platform** (Cloud) and **Open-Source** (Self-hosted) backends.
+- **Tools**: Provides 5 powerful tools for agents to interact with memory manually:
+  - `memory_search`: Search for specific information.
+  - `memory_store`: Explicitly save important facts.
+  - `memory_get`: Retrieve a specific memory by ID.
+  - `memory_list`: List all memories for a user.
+  - `memory_forget`: Delete specific or matching memories (GDPR compliant).
+
+## Installation
+
+Install via OpenClaw CLI (npm registry):
+
+```bash
+openclaw plugins install @shareclz/openclaw-mem0-plugin
+```
+
+For a local checkout, install the packed tarball instead of pointing OpenClaw at
+the whole repository directory. This repo contains other plugin projects and
+their tooling files, which can trip OpenClaw's install security scan.
+
+```bash
+npm pack
+openclaw plugins install ./shareclz-openclaw-mem0-plugin-*.tgz
+```
+
+## Configuration
+
+You can configure the plugin in your `~/.openclaw/openclaw.json`, the apikey and host can get from the platform.
+
+The plugin supports two config locations:
+- `plugins.entries["openclaw-mem0-plugin"].config` (legacy / plugin-local)
+- environment variables via `process.env` or `api.config.env`
+
+### Platform Mode (Recommended)
+
+Use the managed Mem0 Cloud service.
+
+```json
+{
+"plugins": {
+    "allow": [
+      "openclaw-mem0-plugin"
+    ],
+    "slots": {
+      "memory": "openclaw-mem0-plugin"
+    },
+    "entries": {
+      "openclaw-mem0-plugin": {
+        "enabled": true,
+        "config": {
+          "mode": "platform",
+          "apiKey": "<your-mem0-api-key>",
+          "userId": "openclaw-user",
+          "host": "<your-mem0-platform-host>"
+        }
+      }
+    }
+  }
+}
+```
+
+### Environment Variables
+
+If you want to avoid the nested plugin `config`, you can provide Mem0 settings through environment variables:
+
+```json
+{
+  "env": {
+    "vars": {
+      "MEM0_MODE": "platform",
+      "MEM0_API_KEY": "<your-mem0-api-key>",
+      "MEM0_USER_ID": "openclaw-user",
+      "MEM0_HOST": "<your-mem0-platform-host>"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "openclaw-mem0-plugin"
+    ],
+    "slots": {
+      "memory": "openclaw-mem0-plugin"
+    },
+    "entries": {
+      "openclaw-mem0-plugin": {
+        "enabled": true
+      }
+    }
+  }
+}
+```
+
+Supported variables include:
+- `MEM0_MODE`
+- `MEM0_API_KEY`
+- `MEM0_USER_ID`
+- `MEM0_HOST`
+- `MEM0_AGENT_ID`
+- `MEM0_ORG_ID`
+- `MEM0_PROJECT_ID`
+- `MEM0_AUTO_CAPTURE`
+- `MEM0_AUTO_RECALL`
+- `MEM0_ENABLE_GRAPH`
+- `MEM0_SEARCH_THRESHOLD`
+- `MEM0_TOP_K`
+- `MEM0_CUSTOM_INSTRUCTIONS`
+- `MEM0_CUSTOM_PROMPT`
+- `MEM0_CUSTOM_CATEGORIES_JSON`
+- `MEM0_OSS_JSON`
+
+## Usage
+
+### 1. Automatic Memory (Zero-Shot)
+Just enable the plugin. When you chat with your agent:
+- It will automatically "remember" facts you shared in previous conversations.
+- It will "recall" relevant context when you ask related questions.
+
+### 2. Manual Tools
+Your agents can proactively use tools:
+
+- **User**: "Please remember that I'm allergic to peanuts."
+- **Agent**: Calls `memory_store({ text: "User is allergic to peanuts", longTerm: true })`
+
+- **User**: "What was that book I mentioned last week?"
+- **Agent**: Calls `memory_search({ query: "book mentioned last week", scope: "long-term" })`
+
+## CLI Commands
+
+This plugin extends the OpenClaw CLI with memory management commands:
+
+```bash
+# Search memories
+openclaw mem0 search "hobbies"
+
+# Show memory statistics
+openclaw mem0 stats
+```
+
+
+## Acknowledgements
+
+This project is modified from [mem0/openclaw](https://github.com/mem0ai/mem0/tree/main/openclaw).
+
+## License
+
+Apache License Version 2.0

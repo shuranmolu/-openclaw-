@@ -1,0 +1,41 @@
+{
+  "name": "@lark-tns/openclaw-guardian-plugin",
+  "version": "2026.4.19",
+  "type": "module",
+  "description": "OpenClaw plugin that reports hook payloads to the security_plugin detect service with remote hook toggles.",
+  "keywords": ["openclaw", "plugin", "security", "guardian"],
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "pack": "npm run build && npm pack",
+    "upload": "node scripts/uploadManifest.mjs"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/yazl": "^3.3.0",
+    "tsdown": "^0.12.5",
+    "typescript": "^5.8.3",
+    "yazl": "^3.3.1"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@shareclz/openclaw-mem0-plugin",
+  "version": "1.1.1",
+  "description": "OpenClaw memory plugin using mem0",
+  "homepage": "https://code.byted.org/inf/memoryBase-openclaw-plugin/blob/main/README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://code.byted.org/inf/memoryBase-openclaw-plugin.git"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.48",
+    "dotenv": "^17.2.4"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "memory",
+    "mem0"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "install": {
+      "minHostVersion": ">=2026.3.22"
+    }
+  },
+  "clawdbot": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "moltbot": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "author": "Chenlin Zhong",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "tsx": "^4.21.0"
+  }
+}
