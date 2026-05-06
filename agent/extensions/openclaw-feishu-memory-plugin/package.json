@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-feishu-memory-plugin",
+  "version": "0.1.0",
+  "description": "Feishu enterprise memory companion plugin for OpenClaw",
+  "type": "module",
+  "main": "./index.js",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

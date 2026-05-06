@@ -1,0 +1,13 @@
+# MARS Memory Engine - Requirements
+# Python 3.13 compatible
+
+# Optional: FastAPI for HTTP API
+fastapi>=0.110.0
+uvicorn>=0.28.0
+
+# Required dependencies
+pydantic>=2.0.0
+
+# Optional: Vector store (P0 uses placeholder)
+# chromadb>=0.4.0
+# faiss-cpu>=1.7.0

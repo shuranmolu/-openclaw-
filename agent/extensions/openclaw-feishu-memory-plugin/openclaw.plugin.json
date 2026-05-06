@@ -1,0 +1,34 @@
+{
+  "id": "openclaw-feishu-memory-plugin",
+  "description": "Feishu enterprise memory companion plugin for project decisions, facts, and pitfalls.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+      "enabled": {
+        "type": "boolean"
+      },
+      "dataPath": {
+        "type": "string"
+      },
+      "autoRecall": {
+        "type": "boolean"
+      },
+      "maxRecallItems": {
+        "type": "number"
+      },
+      "projects": {
+        "type": "array"
+      },
+      "marsEnginePath": {
+        "type": "string"
+      },
+      "marsDbPath": {
+        "type": "string"
+      },
+      "pythonCommand": {
+        "type": "string"
+      }
+    }
+  }
+}
