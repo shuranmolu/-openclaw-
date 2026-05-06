@@ -2,19 +2,6 @@
 
 这是一个面向飞书项目协作场景的 OpenClaw 插件工程。它把群聊、文档和阶段总结中的非结构化讨论，沉淀为可检索、可追溯、可更新的项目决策记忆。
 
-## 仓库状态
-
-- GitHub 仓库已检查为 public。
-- 已同步 `agent/` 目录中的源码型内容，包括 OpenClaw 插件、飞书扩展、技能定义和本地运行依赖描述。
-- 出于公开仓库安全考虑，未提交本地运行态数据和敏感配置。
-
-未提交的内容包括：
-
-- `agent/openclaw.json` 与 `agent/openclaw.json.bak*`：包含本地 OpenClaw、飞书和模型运行配置。
-- `agent/agents/`、`agent/devices/`、`agent/identity/`、`agent/logs/`、`agent/tasks/`、`agent/workspace/`：本地身份、会话、日志、任务和工作区状态。
-- `node_modules/`、缓存、数据库、日志、环境变量文件、密钥文件。
-- 项目设计文档、测试报告等额外文档目录。
-
 ## 核心能力
 
 - 读取飞书群聊或飞书文档内容，并交给 OpenClaw 工具链分析。
